@@ -4,6 +4,7 @@ const addtxt = document.getElementById("add-text");
 const addbtn = document.getElementById("add-button");
 const incmp = document.getElementById("incomp-list");
 const cmp = document.getElementById("comp-list");
+const killbtn = document.getElementById("del-button");
 
 const onClickAdd = () => {
   const inputText = addtxt.value;
@@ -61,3 +62,9 @@ const onClickAdd = () => {
 };
 
 addbtn.addEventListener("click", () => onClickAdd());
+killbtn.addEventListener("click", () => {
+  let list = document.getElementsByTagName("li");
+  for (let i = 0; i < list.length; i++) {
+    console.log(list[i].parentNode);
+  }
+});
