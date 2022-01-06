@@ -5,8 +5,11 @@ const addbtn = document.getElementById("add-button");
 const incmp = document.getElementById("incomp-list");
 const cmp = document.getElementById("comp-list");
 const killbtn = document.getElementById("del-button");
+let cnt = 0;
 
 const onClickAdd = () => {
+  cnt++;
+
   const inputText = addtxt.value;
   addtxt.value = "";
 
@@ -23,6 +26,7 @@ const onClickAdd = () => {
   const compButton = document.createElement("button");
   compButton.innerText = "完了";
   compButton.addEventListener("click", () => {
+    cnt--;
     //ついているボタンを消す
     div.removeChild(compButton);
     div.removeChild(delButton);
@@ -35,6 +39,7 @@ const onClickAdd = () => {
 
     //戻すボタン処理
     revButton.addEventListener("click", () => {
+      cnt++;
       //ボタンの削除と追加
       div.removeChild(revButton);
       div.appendChild(compButton);
@@ -47,6 +52,7 @@ const onClickAdd = () => {
   const delButton = document.createElement("button");
   delButton.innerText = "削除";
   delButton.addEventListener("click", () => {
+    cnt--;
     //listから削除
     const deltarget = delButton.parentNode;
     incmp.removeChild(deltarget);
@@ -64,7 +70,9 @@ const onClickAdd = () => {
 addbtn.addEventListener("click", () => onClickAdd());
 killbtn.addEventListener("click", () => {
   let list = document.getElementsByTagName("li");
-  for (let i = 0; i < list.length; i++) {
-    console.log(list[i].parentNode);
+  for (let i = 0; i < cnt; i++) {
+    console.log(list[0].parentNode);
+    incmp.removeChild(list[0].parentNode);
   }
+  cnt = 0;
 });
